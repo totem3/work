@@ -3,28 +3,34 @@ def whyrun_supported?
 end
 
 action :create do
-  Chef::Log.info("create bashrc")
+  shell = node['workspace']['shell']
+  Chef::Log.info("create #{shell}rc")
+  directory  "/home/#{work_user}/.#{shell}.d"
   @new_resource.updated_by_last_action(true)
 
   if @new_resource.source and @new_resource.content
     Chef::Application.fatal!("you cannot specify both source and content")
   end
 
-  path = "/home/#{@new_resource.user}/.bashrc.d/#{@new_resource.name}" 
+  path = "/home/#{@new_resource.user}/.#{shell}rc.d/#{@new_resource.name}"
   if @new_resource.source
+    source = @new_resource.source
+    user = @new_resource.user
     cookbook_file path do
-      source @new_resource.source
-      owner @new_resource.user
-      group @new_resource.user
+      source source
+      owner user
+      group user
       mode 0644
     end
   end
 
   if @new_resource.content
+    content = @new_resource.content
+    user = @new_resource.user
     file path do
-      content = @new_resource.content
-      owner @new_resource.user
-      group @new_resource.user
+      content content
+      owner user
+      group user
       mode 0644
     end
   end

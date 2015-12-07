@@ -1,12 +1,11 @@
-user = node['workspace']['user']
 shell = node['workspace']['shell']
 
-rcd = "/home/#{user}/.#{shell}rc.d"
-rcfile = "/home/#{user}/.#{shell}rc"
+rcd = "/home/#{work_user}/.#{shell}rc.d"
+rcfile = "/home/#{work_user}/.#{shell}rc"
 
 directory rcd do
-  user user
-  group user
+  user work_user
+  group work_user
 end
 
 execute 'read rc directory' do
