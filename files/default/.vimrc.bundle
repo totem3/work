@@ -22,6 +22,8 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'vim-jp/vim-go-extra'
 
+NeoBundle 'yuroyoro/yuroyoro256.vim'
+
 
 call neobundle#end()
 

@@ -1,4 +1,4 @@
-PROMPT='%{[38;5;82m%}%M:%n:%c: $ %{[0m%}'
+PROMPT='%{[38;5;82m%}%M:%n:%c%{[0m%}: $ '
 RPROMPT="[%T]"
 
 HISTFILE=~/.zsh_history
