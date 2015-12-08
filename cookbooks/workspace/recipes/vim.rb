@@ -1,4 +1,4 @@
-package 'vim'
+package 'vim-gtk'
 
 directory "/home/#{work_user}/.vim/bundle" do
   recursive true
