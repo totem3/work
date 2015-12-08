@@ -1,6 +1,9 @@
 package 'zsh'
 
-cookbook_file "/home/#{work_user}/.zshrc"
+cookbook_file "/home/#{work_user}/.zshrc" do
+  owner work_user
+  group work_user
+end
 
 execute 'add zsh to shells' do
   command 'echo $(which zsh) >> /etc/shells'

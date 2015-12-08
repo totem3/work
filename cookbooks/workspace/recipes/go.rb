@@ -16,7 +16,7 @@ execute 'install go' do
 end
 
 bash 'go get -u github.com/nsf/gocode' do
+  code 'go get -u github.com/nsf/gocode'
   user work_user
-  path %w(/usr/local/go/bin)
-  environment 'GOPATH' => "/home/#{work_user}/go"
+  environment 'GOPATH' => "/home/#{work_user}/go", 'PATH' => "/usr/local/go/bin:#{ENV['PATH']}"
 end

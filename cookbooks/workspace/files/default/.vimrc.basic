@@ -5,7 +5,7 @@ set autoread
 set noswapfile
 set hidden
 set list
-set listchars=eol:$,tag:>.,trail:_,extends:>,precedes:<
+set listchars=eol:$,tab:>.,trail:_,extends:>,precedes:<
 set backspace=indent,eol,start
 set formatoptions=lmoq
 set vb t_vb=
@@ -16,7 +16,7 @@ set viminfo='50,<1000,s100,\"50
 set modelines=0
 set ambiwidth=double
 set undofile
-set undofile=~/.vim/undo
+set undodir=~/.vim/undo
 set laststatus=2
 set ruler
 set autoindent

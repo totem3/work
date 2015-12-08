@@ -5,7 +5,10 @@ end
 action :create do
   shell = node['workspace']['shell']
   Chef::Log.info("create #{shell}rc")
-  directory  "/home/#{work_user}/.#{shell}.d"
+  directory  "/home/#{work_user}/.#{shell}rc.d" do
+    owner work_user
+    group work_user
+  end
   @new_resource.updated_by_last_action(true)
 
   if @new_resource.source and @new_resource.content
