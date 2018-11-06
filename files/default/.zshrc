@@ -11,4 +11,8 @@ setopt hist_reduce_blanks
 setopt inc_append_history
 setopt hist_no_store
 
-. ~/.zshrc.d/*
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
+# . ~/.zshrc.d/*

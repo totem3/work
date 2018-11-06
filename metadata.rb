@@ -7,4 +7,3 @@ long_description 'Installs/Configures workspace'
 version '0.1.0'
 
 depends 'apt'
-depends 'timezone-ii'

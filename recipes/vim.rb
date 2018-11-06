@@ -1,38 +1,31 @@
-package 'vim-gtk'
+package 'git'
 
-directory "/home/#{work_user}/.vim" do
-  owner work_user
-  group work_user
-end
-
-directory "/home/#{work_user}/.vim/bundle" do
-  owner work_user
-  group work_user
-end
-
-git "/home/#{work_user}/.vim/bundle/neobundle.vim" do
-  repository 'https://github.com/Shougo/neobundle.vim'
+git "#{Chef::Config[:file_cache_path]}/vim" do
+  repository 'https://github.com/vim/vim'
   revision 'master'
-  user work_user
-  group work_user
+  action :sync
 end
 
-directory "/home/#{work_user}/.vimrc.d" do
-  owner work_user
-  group work_user
+execute 'install build depends' do
+  user 'root'
+  command 'apt-get build-dep -y --allow-unauthenticated vim'
 end
 
-
-cookbook_file "/home/#{work_user}/.vimrc" do
-  owner work_user
-  group work_user
-end
-
-"/home/#{work_user}/.vimrc.d".tap do |vimdir|
-  %w{.vimrc.basic .vimrc.bundle .vimrc.complete}.each do |file|
-    cookbook_file "#{vimdir}/#{file}" do
-      owner work_user
-      group work_user
-    end
-  end
+package %w{
+  lua5.3
+  python3
+  python3-dev
+  python3-pip
+}
+configure_opts = %w{
+--with-features=huge
+--enable-luainterp
+--enable-python3interp
+--enable-ruby-interp
+--enable-fail-if-missing
+}.join(" ")
+execute 'build vim' do
+  user 'root'
+  command "./configure #{configure_opts} && make && sudo make install"
+  cwd "#{Chef::Config[:file_cache_path]}/vim"
 end

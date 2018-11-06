@@ -1,9 +1,12 @@
-apt_repository 'ruby2.2'do
-  uri 'http://ppa.launchpad.net/brightbox/ruby-ng/ubuntu'
-  distribution node['lsb']['codename']
-  components ['main']
+git "rbenv" do
+  repository "https://github.com/sstephenson/rbenv.git"
+  destination "/home/vagrant/.rbenv"
+  action :sync
 end
 
-package 'ruby2.2' do
-  options '--force-yes'
+
+git "ruby-build" do
+  repository https://github.com/sstephenson/ruby-build.git
+  destination "/home/vagrant/.rbenv/plugins/ruby-build"
+  action :sync
 end
